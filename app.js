@@ -33,7 +33,7 @@ const getImages = query => {
     fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
       .then(response => response.json())
       .then(data => showImages(data.hits))
-      .catch(err => console.log(err));
+      .catch(error => displayErrorMessage('Sorry i failed to load images'));
 
   }, 3000);
   toggleSpinner();
@@ -142,5 +142,9 @@ sliderBtn.addEventListener('click', function () {
 const toggleSpinner = () => {
   const spinner = document.getElementById('loading-spinner');
   spinner.classList.toggle('d-md-none');
+}
+// Error Message
+const displayErrorMessage = error => {
+  document.getElementById('errorMessage').innerHTML = "Sorry, we didn't find any images!";
 }
 
